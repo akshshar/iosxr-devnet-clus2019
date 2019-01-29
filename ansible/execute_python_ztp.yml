@@ -1,0 +1,14 @@
+---
+- hosts: routers_shell 
+  strategy: debug
+  become: yes
+  gather_facts: no
+
+  tasks:
+  - debug: msg="hostname={{hostname}}"
+  - name: Copy and Execute the Python Configuration script on the router
+    script: /home/admin/iosxr-devnet-clus2018/ztp_cli_automation/automate_cli_python.py
+    register: output
+
+  - debug:
+        var: output.stdout_lines

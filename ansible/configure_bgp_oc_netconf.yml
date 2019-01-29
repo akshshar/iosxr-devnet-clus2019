@@ -1,0 +1,14 @@
+---
+- hosts: routers_shell
+  connection: local
+  gather_facts: no
+
+  tasks:
+  - name: set ntp server in the device
+    netconf_config:
+      host: "{{ ansible_host }}"
+      port: "{{ netconf_port }}"
+      username: "{{ ansible_user }}"
+      password: "{{ ansible_password }}"
+      hostkey_verify: no
+      xml: "{{ lookup('file', xml_file) }}"
