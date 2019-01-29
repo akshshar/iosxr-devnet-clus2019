@@ -38,6 +38,11 @@ cat > /root/rtr_config << EOF
   interface Loopback0
   ipv4 address ${loopback_addresses[${hostname}]}/32
 !
+grpc
+ service-layer
+ port 57777
+ no-tls
+!
 end
 EOF
 
