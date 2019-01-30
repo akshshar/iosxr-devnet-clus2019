@@ -242,10 +242,5 @@ if __name__ == "__main__":
     print "\n#######Pulling the docker image for Open/R ######\n" 
     result = ztp_script.run_bash(cmd = "export DOCKER_HOST=unix:///misc/app_host/docker.sock && ip netns exec global-vrf docker pull  akshshar/openr-xr")
     
-    if result:
-        print "Failed to download docker image,aborting..."
-        print result
-    else:
-        print "Docker image pulled successfully"
-        print result
+    print result
 
