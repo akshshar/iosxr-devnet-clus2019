@@ -4,7 +4,7 @@
   gather_facts: no
 
   tasks:
-  - name: set ntp server in the device
+  - name: Configure BGP on the router
     netconf_config:
       host: "{{ ansible_host }}"
       port: "{{ netconf_port }}"
