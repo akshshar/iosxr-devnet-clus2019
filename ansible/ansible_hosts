@@ -1,4 +1,7 @@
 [routers_shell]
-r1 ansible_user="admin" ansible_password="admin" ansible_sudo_pass="admin" ansible_host=10.10.20.170 ansible_port=2222 hostname=r1 netconf_port=8321 xml_file="./xml/r1-bgp.xml" run_openr_script="./openr/run_openr_r1.sh" launch_openr_script="./openr/launch_openr_r1.sh" hosts_r="./openr/hosts_r1" increment_ipv4_prefix="./openr/increment_ipv4_prefix1.py" cron_file="./set_ipv6_route.sh"
+r1 ansible_user="admin" ansible_password="admin" ansible_sudo_pass="admin" ansible_host=10.10.20.170 ansible_port=2222 hostname=r1 netconf_port=8321 xml_file="./xml/r1-bgp.xml" run_openr_script="./openr/run_openr_r1.sh" launch_openr_script="./openr/launch_openr_r1.sh" hosts_r="./openr/hosts_r1" increment_ipv4_prefix="./openr/increment_ipv4_prefix1.py" cron_file="./set_ipv6_route.sh" base_xml_file="./yang_config/r1.xml" docker_sysconfig_file="./openr/docker.sysconfig"
 
-r2 ansible_user="admin" ansible_sudo_pass="admin" ansible_password="admin" ansible_host=10.10.20.170 ansible_port=2232 hostname=r2 netconf_port=8331 xml_file="./xml/r2-bgp.xml" run_openr_script="./openr/run_openr_r2.sh" launch_openr_script="./openr/launch_openr_r2.sh" hosts_r="./openr/hosts_r2" increment_ipv4_prefix="./openr/increment_ipv4_prefix2.py" cron_file="./set_ipv6_route.sh"
+r2 ansible_user="admin" ansible_sudo_pass="admin" ansible_password="admin" ansible_host=10.10.20.170 ansible_port=2232 hostname=r2 netconf_port=8331 xml_file="./xml/r2-bgp.xml" run_openr_script="./openr/run_openr_r2.sh" launch_openr_script="./openr/launch_openr_r2.sh" hosts_r="./openr/hosts_r2" increment_ipv4_prefix="./openr/increment_ipv4_prefix2.py" cron_file="./set_ipv6_route.sh" base_xml_file="./yang_config/r2.xml" docker_sysconfig_file="./openr/docker.sysconfig"
+
+[devbox-host]
+devbox ansible_user="admin" ansible_password="admin" ansible_sudo_user="admin" ansible_sudo_pass="admin" ansible_host=localhost
