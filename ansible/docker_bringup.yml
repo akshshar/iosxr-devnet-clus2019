@@ -13,18 +13,25 @@
 
   tasks:
 
-  - name: Copy docker sysconfig file to rtr
+
+  - name: Copy modified docker sysconfig file to rtr
     copy:
       src: "{{ docker_sysconfig_file }}"
-      dest: "/etc/sysconfig/docker"
+      dest: "/misc/app_host/etc/sysconfig/docker"
       owner: root
       group: root
       mode: a+x
 
+  - name: Copy over modified mounted docker sysconfig file to host docker sysconfig
+    shell: source /pkg/bin/ztp_helper.sh && echo -ne "run ssh 10.0.2.16 cp /misc/app_host/etc/sysconfig/docker /etc/sysconfig/docker\n" | xrcmd "admin"
+
+  - name: Restart the docker daemon
+    shell: source /pkg/bin/ztp_helper.sh && echo -ne "run ssh 10.0.2.16 service docker restart\n" | xrcmd "admin"
+
   # Pause for 5 minutes to build app cache.
-  - name: Pause the playbook for about 45 seconds as docker daemon restarts due to sysconfig change
+  - name: Pause the playbook for about 30 seconds as docker daemon restarts due to sysconfig change
     pause:
-      seconds: 45
+      seconds: 30
 
 
   - name: Copy run_openr script to rtr
@@ -34,6 +41,7 @@
       owner: root 
       group: root 
       mode: a+x 
+
   - name: Copy hosts_r file to rtr
     copy:
       src: "{{ hosts_r }}"

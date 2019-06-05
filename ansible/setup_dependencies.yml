@@ -1,0 +1,11 @@
+---
+- hosts: devbox-host
+  gather_facts: no
+  become: yes
+
+  tasks:
+
+  - name: Install the docker module for Ansible
+    pip:
+      name:  ncclient
+      state: present
