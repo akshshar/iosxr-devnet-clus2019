@@ -5,15 +5,6 @@
 
   tasks:
 
-  - name: Apply Base config on the router
-    netconf_config:
-      host: "{{ ansible_host }}"
-      port: "{{ netconf_port }}"
-      username: "{{ ansible_user }}"
-      password: "{{ ansible_password }}"
-      hostkey_verify: no
-      xml: "{{ lookup('file', base_xml_file) }}"
-
   - name: Configure BGP on the router
     netconf_config:
       host: "{{ ansible_host }}"

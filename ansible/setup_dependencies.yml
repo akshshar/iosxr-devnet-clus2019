@@ -5,7 +5,7 @@
 
   tasks:
 
-  - name: Install the docker module for Ansible
+  - name: Install ncclient 
     pip:
       name:  ncclient
       state: present
