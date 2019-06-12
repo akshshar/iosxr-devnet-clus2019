@@ -157,4 +157,4 @@ exec ip netns exec global-vrf ${OPENR} \
   --iosxr_slapi_port=${IOSXR_SLAPI_PORT} \
   --iosxr_slapi_ip=${IOSXR_SLAPI_IP} \
   --fib_agent_port=${FIB_HANDLER_PORT}
-  "$@" > /root/openr.log 2>&1
+  "$@"
