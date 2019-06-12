@@ -209,7 +209,7 @@ if __name__ == "__main__":
             print "\n ###### Failed to fetch last configuration commit ######\n"
             pprint(last_commit["output"])
 
-    print "\n####### Applying tpa configuration to enable docker pull from docker.io######\n"
+    print "\n####### Applying tpa configuration to enable internet access from linux shell via management port ######\n"
     result = ztp_script.tpa_config()
 
     if result["status"] == "success":
@@ -221,26 +221,4 @@ if __name__ == "__main__":
         print("Failed to apply tpa config, aborting....")
         pprint(result["output"])
         sys.exit(1)
-
-    print "\n####### Finally restarting the docker daemon to make sure changes take effect######\n"
-    result = ztp_script.admincmd(cmd = "run ssh 10.0.2.16 service docker restart", root_lr_user="vagrant")    
-
-    if result["status"] == "success":
-        print "\n###### Successfully restarted the docker daemon, response: ######\n"
-        pprint(result["output"])
-        print "\n###### return value in json: ######\n"
-        print json.dumps(result["output"],sort_keys=True, indent=4)
-    else:
-        print("Failed to run admincmd, aborting ...")
-        pprint(result["output"])
-        sys.exit(1)
-
-
-    print("Sleeping for about 30 seconds, waiting for the docker daemon to be up")
-    time.sleep(30)
-   
-    print "\n#######Pulling the docker image for Open/R ######\n" 
-    result = ztp_script.run_bash(cmd = "export DOCKER_HOST=unix:///misc/app_host/docker.sock && ip netns exec global-vrf docker pull  akshshar/openr-xr")
-    
-    print result
 
